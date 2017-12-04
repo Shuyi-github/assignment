@@ -41,9 +41,12 @@ val k = 3
 	center(i) = pointlist(rand.nextInt(pointlist.size)-1)
 	println(center(i))
 	}
+	val pointLable = new Array[Int](pointsNum)  
 	for(i<- 0 to pointsNum-1)
 	{
-	println(pointlist.reduce(clostestpoint(_ , center)))
+	temp = clostestpoint(pointlist(i),center)
+	pointLable(i) = center.indexOf(temp) 
+	println(pointLable(i))
 	}
   }
 }
