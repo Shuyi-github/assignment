@@ -41,6 +41,16 @@ val k = 3
 	center(i) = pointlist(rand.nextInt(pointlist.size)-1)
 	println(center(i))
 	}
+	
+	val cluster = pointlist.groupBy { clostestpoint(center,_) }   
+	val newCenters = center.map { oldCenter =>   
+         cluster.get(oldCenter) match{  
+           case Some(pointsInCluster) =>   
+             averge(pointsInCluster)
+           case None => oldCenter  
+         }  
+        }  
+	
 	val pointLable = new Array[Int](pointsNum)  
 	for(i<- 0 to pointsNum-1)
 	{
