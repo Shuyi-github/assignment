@@ -39,18 +39,27 @@ val k = 3
 	val pointsNum = pointlist.size
 	for( i<- 0 to k-1){
 	center(i) = pointlist(rand.nextInt(pointlist.size)-1)
-	println(center(i))
 	}
-	
+	var bool= true
+	while(bool){
 	val cluster = pointlist.groupBy { clostestpoint(center,_) }   
 	val newCenters = center.map { oldCenter =>   
          cluster.get(oldCenter) match{  
            case Some(pointsInCluster) =>   
              averge(pointsInCluster)
            case None => oldCenter  
-         }  
-        }  
-	
+         				}  
+        	}  
+	var movement = 0d  
+	       for(i <- 0 to k-1){  
+		 movement += distance(center(i),newCenters(i))  
+		 center(i) = newCenters(i)   
+	       }  
+	       if(movement <= 0.000001){  
+		 bool = false  
+	       }  
+	}
+	println(center(i))
 	val pointLable = new Array[Int](pointsNum)  
 	for(i<- 0 to pointsNum-1)
 	{
